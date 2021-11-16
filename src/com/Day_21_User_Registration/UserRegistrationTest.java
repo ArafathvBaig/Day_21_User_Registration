@@ -6,83 +6,143 @@ import org.junit.jupiter.api.Test;
 class UserRegistrationTest 
 {
 	@Test
-	void getTheFirstNameAndCheckWhetherTheRegexCodeIsCorrectOrNotHappyCase() 
+	void getTheFirstNameAndCheckWhetherTheRegexCodeIsCorrectOrNotHappyCase() throws UserRegistrationException
 	{
 		UserRegistration ur = new UserRegistration();
 		String firstName = "Arafath";	
-		boolean check = ur.firstNameCheck(firstName);
-		Assert.assertEquals(true, check);
+		try 
+		{
+			ur.firstNameCheck(firstName);
+		}
+		catch (FirstNameException fne) 
+		{
+			Assert.assertEquals("Valid", fne.getCheck());
+		}	
 	}
 	@Test
-	void getTheFirstNameAndCheckWhetherTheRegexCodeIsCorrectOrNotSadCase() 
+	void getTheFirstNameAndCheckWhetherTheRegexCodeIsCorrectOrNotSadCase() throws UserRegistrationException
 	{
 		UserRegistration ur = new UserRegistration();
-		String firstName = "arafath";	
-		boolean check = ur.firstNameCheck(firstName);
-		Assert.assertEquals(true, check);
+		String firstName = "arafath";
+		try
+		{		
+			ur.firstNameCheck(firstName);
+		}
+		catch(FirstNameException fne)
+		{
+			Assert.assertEquals("Invalid", fne.getCheck());
+		}
 	}
-	@Test
-	void getTheLastNameAndCheckWhetherTheRegexCodeIsCorrectOrNotHappyCase() 
+	 @Test
+	void getTheLastNameAndCheckWhetherTheRegexCodeIsCorrectOrNotHappyCase() throws UserRegistrationException
 	{
 		UserRegistration ur = new UserRegistration();
 		String lastName = "Baig";	
-		boolean check = ur.lastNameCheck(lastName);
-		Assert.assertEquals(true, check);
+		try
+		{
+			ur.lastNameCheck(lastName);
+		}
+		catch(LastNameException lne)
+		{
+			Assert.assertEquals("Valid", lne.getCheck());
+		}
 	}
 	@Test
-	void getTheLastNameAndCheckWhetherTheRegexCodeIsCorrectOrNotSadCase() 
+	void getTheLastNameAndCheckWhetherTheRegexCodeIsCorrectOrNotSadCase() throws UserRegistrationException
 	{
 		UserRegistration ur = new UserRegistration();
 		String lastName = "baig";	
-		boolean check = ur.lastNameCheck(lastName);
-		Assert.assertEquals(true, check);
+		try
+		{
+			ur.lastNameCheck(lastName);
+		}
+		catch(LastNameException lne)
+		{
+			Assert.assertEquals("Invalid", lne.getCheck());
+		}
 	}
 	@Test
-	void getTheEmailAndCheckWhetherTheRegexCodeIsCorrectOrNotHappyCase() 
+	void getTheEmailAndCheckWhetherTheRegexCodeIsCorrectOrNotHappyCase() throws UserRegistrationException
 	{
 		UserRegistration ur = new UserRegistration();
 		String email = "abc.XYZ@bl.co.in";
-		boolean check = ur.emailCheck(email);
-		Assert.assertEquals(true, check);
+		try
+		{
+			ur.emailCheck(email);
+		} 
+		catch(EmailException ee)
+		{
+			Assert.assertEquals("Valid", ee.getCheck());
+		}
 	}@Test
-	void getTheEmailAndCheckWhetherTheRegexCodeIsCorrectOrNotSadCase() 
+	void getTheEmailAndCheckWhetherTheRegexCodeIsCorrectOrNotSadCase() throws UserRegistrationException
 	{
 		UserRegistration ur = new UserRegistration();
 		String email = "abc";
-		boolean check = ur.emailCheck(email);
-		Assert.assertEquals(true, check);
+		try
+		{
+			ur.emailCheck(email);
+		} 
+		catch(EmailException ee)
+		{
+			Assert.assertEquals("Invalid", ee.getCheck());
+		}
 	}
 	@Test
-	void getThePhoneNumberAndCheckWhetherTheRegexCodeIsCorrectOrNotHappyCase() 
+	void getThePhoneNumberAndCheckWhetherTheRegexCodeIsCorrectOrNotHappyCase() throws UserRegistrationException
 	{
 		UserRegistration ur = new UserRegistration();
 		String phone = "91 9115513683";
-		boolean check = ur.phoneNumberCheck(phone);
-		Assert.assertEquals(true, check);
+		try
+		{
+			ur.phoneNumberCheck(phone);
+		}
+		catch(PhoneNumberException pne)
+		{
+			Assert.assertEquals("Valid", pne.getCheck());
+		}
 	}
 	@Test
-	void getThePhoneNumberAndCheckWhetherTheRegexCodeIsCorrectOrNotSadCase() 
+	void getThePhoneNumberAndCheckWhetherTheRegexCodeIsCorrectOrNotSadCase() throws UserRegistrationException
 	{
 		UserRegistration ur = new UserRegistration();
 		String phone = "919115513683";
-		boolean check = ur.phoneNumberCheck(phone);
-		Assert.assertEquals(true, check);
+		try
+		{
+			ur.phoneNumberCheck(phone);
+		}
+		catch(PhoneNumberException pne)
+		{
+			Assert.assertEquals("Invalid", pne.getCheck());
+		}
 	}
 	@Test
-	void getThePassWordAndCheckWhetherTheRegexCodeIsCorrectOrNotHappyCase() 
+	void getThePassWordAndCheckWhetherTheRegexCodeIsCorrectOrNotHappyCase() throws UserRegistrationException
 	{
 		UserRegistration ur = new UserRegistration();
 		String password = "Arafathbaig1997$";
-		boolean check = ur.passwordCheck(password);
-		Assert.assertEquals(true, check);
+		try
+		{
+			ur.passwordCheck(password);
+		}
+		catch(PasswordException pe)
+		{
+			Assert.assertEquals("Valid", pe.getCheck());
+		}
 	}
 	@Test
-	void getThePassWordAndCheckWhetherTheRegexCodeIsCorrectOrNotSadCase() 
+	void getThePassWordAndCheckWhetherTheRegexCodeIsCorrectOrNotSadCase() throws UserRegistrationException
 	{
 		UserRegistration ur = new UserRegistration();
-		String password = "arafathbaig1997$";
-		boolean check = ur.passwordCheck(password);
-		Assert.assertEquals(true, check);
+		String password = "Arafathbaig";
+		try
+		{
+			ur.passwordCheck(password);
+		}
+		catch(PasswordException pe)
+		{
+			Assert.assertEquals("Invalid", pe.getCheck());
+		}
 	}
 }
 
